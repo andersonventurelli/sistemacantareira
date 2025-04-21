@@ -113,9 +113,11 @@ teste8020 <- split_series$teste
 #Criação do Modelo
 modelo_arima8020 <- auto.arima(treino8020,
                                stepwise = FALSE,
-                               approximation = FALSE) # Criação do modelo
-summary(modelo_arima8020)
+                               approximation = FALSE) 
+
 previsao_arima8020 <- forecast(modelo_arima8020, h = length(teste8020))
+
+summary(modelo_arima8020)
 
 coeftest(modelo_arima8020)
 
@@ -160,13 +162,6 @@ summary(modelo_ets)
 previsao_ets <- forecast(modelo_ets, h = length(teste8020))
 summary(previsao_ets)
 
-
-alpha_ic <- 0.9999 + c(-1.96, 1.96) * 0.0001  # IC para alpha
-beta_ic  <- 0.2206 + c(-1.96, 1.96) * 0.05    # IC para beta
-phi_ic   <- 0.9236 + c(-1.96, 1.96) * 0.02     # IC para phi
-alpha_ic
-beta_ic
-phi_ic
 plot(previsao_ets, main = "Modelo ETS: Previsões x Dados Reais", xlab = "Ano", ylab = "Volume(hm³)",xaxt = "n")
 grid()
 anos_para_exibir <- seq(2000, 2025, by = 1)
@@ -188,13 +183,15 @@ modelo_sarima <- auto.arima(treino8020,
 
 previsao_sarima <- forecast(modelo_sarima, h = length(teste8020))
 
+summary(modelo_sarima)
+
 plot(previsao_sarima, main = "Modelo SARIMA: Previsões x Dados Reais", xlab = "Ano", ylab = "Volume(hm³)",xaxt = "n")
 grid()
 anos_para_exibir <- seq(2000, 2025, by = 1)
 axis(1, at = as.Date(paste0(anos_para_exibir, "-01-01")), labels = anos_para_exibir, las = 2)
 lines(teste8020, col = 'red')
 
-summary(modelo_sarima)
+
 
 # Verificar os Resíduos do Modelo sarima
 checkresiduals(modelo_sarima)
