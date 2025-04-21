@@ -1,5 +1,5 @@
 #Instalação dos Pacotes
-pacotes <- c("readxl","forecast","crayon","ggplot2","tibble","zoo","knitr","dplyr","tseries","urca","lmtest")
+pacotes <- c("readxl","forecast","crayon","ggplot2","tibble","zoo","dplyr","urca","lmtest")
 
 options(rgl.debug = TRUE)
 
@@ -20,9 +20,7 @@ library(crayon)
 library(ggplot2)
 library(tibble)
 library(zoo)
-library(knitr)
 library(dplyr)
-library(tseries) #testes para verificar estacionariedade das série temporal
 library(urca)
 library(lmtest)
 
